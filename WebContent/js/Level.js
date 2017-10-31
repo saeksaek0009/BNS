@@ -11,7 +11,7 @@ Level.prototype = proto;
 
 Level.prototype.create = function() {
 	this.addMonkey();
-	this.moveMonkey();
+	//this.moveMonkey();
 };
 
 Level.prototype.addMonkey = function() {
@@ -30,7 +30,7 @@ Level.prototype.moveMonkey = function() {
 	var twn = this.add.tween(this.monkey);
 	twn.to({
 		y : 200
-	}, 1000, "Quad.easeInOut", true, 0, Number.MAX_VALUE, true);
+	}, 100, "Quad.easeInOut", true, 0, Number.MAX_VALUE, true);
 
 	// rotate monkey
 	twn = this.add.tween(this.monkey);
