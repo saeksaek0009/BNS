@@ -12,6 +12,9 @@ Level.prototype = proto;
 Level.prototype.create = function() {
 	this.addMonkey();
 	//this.moveMonkey();
+	 this.map = this.game.add.tilemap("tile_set1");
+	 this.map.addTilesetImage('tile_set1','tile_set');
+	 this.maplayer = this.map.createLayer("Tile Layer 3");
 };
 
 Level.prototype.addMonkey = function() {

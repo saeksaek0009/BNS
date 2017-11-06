@@ -1,27 +1,71 @@
 {
-    "level": [{
-        "type": "image",
-        "overwrite": false,
-        "key": "mono",
-        "url": "assets/images/mono.png"
-    }],
-    "meta": {
-        "app": "Phaser Editor",
-        "copyright": "Arian Fornaris (boniatillo.com) 2015",
-        "generated": "1433372306339",
-        "version": "1.0",
-        "url": "http://boniatillo.com"
+  "level": [
+    {
+      "type": "image",
+      "key": "mono",
+      "url": "assets/images/mono.png",
+      "overwrite": false
     },
-    "start": [{
-        "type": "image",
-        "overwrite": false,
-        "key": "tap-to-start",
-        "url": "assets/images/tap-to-start.png"
-    }],
-    "preload": [{
-        "type": "image",
-        "overwrite": false,
-        "key": "loading",
-        "url": "assets/images/loading.png"
-    }]
+    {
+      "type": "spritesheet",
+      "key": "boniatillo",
+      "url": "assets/images/boniatillo.png",
+      "frameWidth": 0,
+      "frameHeight": 0,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "spritesheet",
+      "key": "tile_set",
+      "url": "assets/tilemap/tile_set.png",
+      "frameWidth": 0,
+      "frameHeight": 0,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "tilemap",
+      "key": "tile_set1",
+      "url": "assets/tilemap/tile_set1.json",
+      "format": "TILED_JSON"
+    },
+    {
+      "type": "spritesheet",
+      "key": "tile_sheet",
+      "url": "assets/tilemap/tile_set3.png",
+      "frameWidth": 0,
+      "frameHeight": 0,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "tilemap",
+      "key": "tile_set3",
+      "url": "assets/tilemap/tile_set3.json",
+      "format": "TILED_JSON"
+    }
+  ],
+  "start": [{
+    "type": "image",
+    "key": "tap-to-start",
+    "url": "assets/images/tap-to-start.png",
+    "overwrite": false
+  }],
+  "preload": [{
+    "type": "image",
+    "key": "loading",
+    "url": "assets/images/loading.png",
+    "overwrite": false
+  }],
+  "meta": {
+    "generated": "1509968821332",
+    "app": "Phaser Editor",
+    "url": "http://phasereditor.boniatillo.com",
+    "version": "1.0",
+    "copyright": "Arian Fornaris (c) 2015,2016"
+  }
 }
