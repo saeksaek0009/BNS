@@ -70,30 +70,7 @@ function gframes(key, n) {
 	return f;
 }
 
-Level.prototype.update = function() {
-	//this.game.physics.arcade.collide(this.player, this.map_layer);
-	//this.game.physics.arcade.collide(this.enemies, this.map_layer);
-	//this.game.physics.arcade.collide(this.player, this.enemies, this.hitEnemy,null,this);
 
-	if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-		this.player.body.velocity.x = -150;this.player.scale.x = -1;
-		this.player.play("walk");
-	} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-		this.player.body.velocity.x = 150;this.player.scale.x = 1;
-		this.player.play("walk");
-	}  
-	
-	if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-		if(this.player.body.velocity.y==0)
-		this.player.body.velocity.y = -550;
-	} else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-		//this.player.body.acceleration.y = 120;
-	} else {
-		//this.player.body.velocity.setTo(0, 0);
-		//this.player.body.acceleration.setTo(0, 0);
-		if(this.player.body.velocity.x==0) this.player.play("idle");
-	}
-};
 
 
 /*Level.prototype.addMonkey = function() {
