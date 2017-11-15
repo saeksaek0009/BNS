@@ -10,8 +10,13 @@ var proto = Object.create(Phaser.State);
 Level.prototype = proto;
 
 Level.prototype.create = function() {
+	this.game.physics.startSystem(Phaser.Physics.ARCADE);
+	this.game.physics.arcade.gravity.y = 1000;
 	//this.addMonkey();
 	//this.moveMonkey();
+
+	
+	
 	this.bg = this.game.add.sprite(0, 0, "BG");
 	 this.bg.fixedToCamera = true;
 	 this.bg.width = this.game.width;
@@ -21,12 +26,80 @@ Level.prototype.create = function() {
 	 this.map.addTilesetImage('tile_set1');
 	 this.maplayer = this.map.createLayer("Tile Layer 1");
 	 this.maplayer = this.map.createLayer("Tile Layer 2");
+	 
+	 
+	 //แสดงสไปรท์
+	 for (x in this.map.objects.Object) {
+			var obj = this.map.objects.Object[x];
+			if (obj.type == "player") {
+				console.log(this.player);
+				this.player = this.addPlayer(obj.x, obj.y);
+				this.game.camera.follow(this.player,
+						Phaser.Camera.FOLLOW_PLATFORMER);
+				this.player.play("walk");
+			} else if (obj.type == "enemy1") {
+				var c = this.addCat(obj.x, obj.y);
+				this.enemies.add(c);
+			} 
+	 }
 };
 
-Level.prototype.addMonkey = function() {
+Level.prototype.addPlayer = function(x, y) {
+	p = this.add.sprite(x, y, "player");
+	p.animations.add("idle", gframes("idle", 15), 12, true);
+	p.animations.add("fight", gframes("fight", 15), 12, true);
+	p.animations.add("jump", gframes("jump", 15), 12, true);
+	p.animations.add("walk", gframes("walk", 15), 12, true);
+
+	p.anchor.set(0, 1);
+	p.smoothed = false;
+	this.game.physics.arcade.enable(p);
+	p.play("idle");
+	p.body.collideWorldBounds = false;
+	p.body.drag.setTo(500, 0);
+	p.body.setSize(20,60,5,0);
+	return p;
+
+};
+function gframes(key, n) {
+	var f = [];
+	for (var i = 0; i <= n; i++) {
+		var kf = key + "_" + (("00" + i).slice(-3));
+		f.push(kf);
+	}
+	return f;
+}
+
+Level.prototype.update = function() {
+	//this.game.physics.arcade.collide(this.player, this.map_layer);
+	//this.game.physics.arcade.collide(this.enemies, this.map_layer);
+	//this.game.physics.arcade.collide(this.player, this.enemies, this.hitEnemy,null,this);
+
+	if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+		this.player.body.velocity.x = -150;this.player.scale.x = -1;
+		this.player.play("walk");
+	} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+		this.player.body.velocity.x = 150;this.player.scale.x = 1;
+		this.player.play("walk");
+	}  
+	
+	if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+		if(this.player.body.velocity.y==0)
+		this.player.body.velocity.y = -550;
+	} else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+		//this.player.body.acceleration.y = 120;
+	} else {
+		//this.player.body.velocity.setTo(0, 0);
+		//this.player.body.acceleration.setTo(0, 0);
+		if(this.player.body.velocity.x==0) this.player.play("idle");
+	}
+};
+
+
+/*Level.prototype.addMonkey = function() {
 	// add monkey
 	this.monkey = this.add.sprite(this.world.centerX, this.world.height - 250,
-			"mono");
+			"player");
 	this.monkey.anchor.set(0.5, 0.5);
 
 	// listen for a monkey click
@@ -67,7 +140,7 @@ Level.prototype.hitMonkey = function() {
 
 	// when tween completes, quit the game
 	twn.onComplete.addOnce(this.quitGame, this);
-};
+};*/
 
 Level.prototype.quitGame = function() {
 	this.game.state.start("Menu");
