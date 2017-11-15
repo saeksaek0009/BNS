@@ -10,11 +10,17 @@ var proto = Object.create(Phaser.State);
 Level.prototype = proto;
 
 Level.prototype.create = function() {
-	this.addMonkey();
+	//this.addMonkey();
 	//this.moveMonkey();
-	 this.map = this.game.add.tilemap("tile_set1");
-	 this.map.addTilesetImage('tile_set1','tile_set');
-	 this.maplayer = this.map.createLayer("Tile Layer 3");
+	this.bg = this.game.add.sprite(0, 0, "BG");
+	 this.bg.fixedToCamera = true;
+	 this.bg.width = this.game.width;
+	 this.bg.height = this.game.height;
+	 
+	 this.map = this.game.add.tilemap("lab7");
+	 this.map.addTilesetImage('tile_set1');
+	 this.maplayer = this.map.createLayer("Tile Layer 1");
+	 this.maplayer = this.map.createLayer("Tile Layer 2");
 };
 
 Level.prototype.addMonkey = function() {

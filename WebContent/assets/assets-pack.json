@@ -7,6 +7,18 @@
       "overwrite": false
     },
     {
+      "type": "image",
+      "key": "BG",
+      "url": "assets/images/BG.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "BG2",
+      "url": "assets/images/BG2.jpg",
+      "overwrite": false
+    },
+    {
       "type": "spritesheet",
       "key": "boniatillo",
       "url": "assets/images/boniatillo.png",
@@ -18,24 +30,18 @@
     },
     {
       "type": "spritesheet",
-      "key": "tile_set",
-      "url": "assets/tilemap/tile_set.png",
+      "key": "tile_set1",
+      "url": "assets/tilemap/tile_set1.png",
       "frameWidth": 0,
       "frameHeight": 0,
       "frameMax": -1,
       "margin": 0,
       "spacing": 0
-    },
-    {
-      "type": "tilemap",
-      "key": "tile_set1",
-      "url": "assets/tilemap/tile_set1.json",
-      "format": "TILED_JSON"
     },
     {
       "type": "spritesheet",
-      "key": "tile_sheet",
-      "url": "assets/tilemap/tile_set3.png",
+      "key": "tile_set2",
+      "url": "assets/tilemap/tile_set2.png",
       "frameWidth": 0,
       "frameHeight": 0,
       "frameMax": -1,
@@ -44,8 +50,14 @@
     },
     {
       "type": "tilemap",
-      "key": "tile_set3",
-      "url": "assets/tilemap/tile_set3.json",
+      "key": "lab7",
+      "url": "assets/tilemap/lab7.json",
+      "format": "TILED_JSON"
+    },
+    {
+      "type": "tilemap",
+      "key": "lab72",
+      "url": "assets/tilemap/lab72.json",
       "format": "TILED_JSON"
     }
   ],
@@ -62,7 +74,7 @@
     "overwrite": false
   }],
   "meta": {
-    "generated": "1509968821332",
+    "generated": "1510732969280",
     "app": "Phaser Editor",
     "url": "http://phasereditor.boniatillo.com",
     "version": "1.0",
