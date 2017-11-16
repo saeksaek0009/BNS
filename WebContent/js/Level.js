@@ -23,8 +23,9 @@ Level.prototype.create = function() {
 	 
 	 this.map = this.game.add.tilemap("lab72");
 	 this.map.addTilesetImage('tile_set2');
-	 this.maplayer = this.map.createLayer("Tile Layer 1");
 	 this.maplayer = this.map.createLayer("Tile Layer 2");
+	 this.maplayer = this.map.createLayer("Tile Layer 1");
+	
 	 this.maplayer.resizeWorld();
 	 this.map.setCollisionBetween(0, 17, true, this.maplayer);
 	// แสดง sprite
@@ -35,7 +36,7 @@ Level.prototype.create = function() {
 		 console.log(this.player);
 		 this.player = this.addPlayer(obj.x,obj.y);
 		 this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
-		 this.player.play("walk");
+		 this.player.play("idle");
 		 }
 		}
 };
@@ -46,14 +47,15 @@ Level.prototype.addPlayer = function(x, y) {
 	p.animations.add("fight", gframes("fight", 15), 12, true);
 	p.animations.add("jump", gframes("jump", 15), 12, true);
 	p.animations.add("walk", gframes("walk", 15), 12, true);
-
-	p.anchor.set(0, 1);
+    p.scale.x = -1;
+	p.anchor.set(0.6,1);
+	
 	p.smoothed = false;
 	this.game.physics.arcade.enable(p);
 	p.play("idle");
-	p.body.collideWorldBounds = false;
+	p.body.collideWorldBounds = true;
 	p.body.drag.setTo(500, 0);
-	p.body.setSize(20,60,5,0);
+	p.body.setSize(20,150,80,0);
 	return p;
 
 };
@@ -86,7 +88,29 @@ Level.prototype.addCicken = function(x, y) {
 		c.animations.add("walk", mframe("ck",10),12,true);
 		c.play("idle");
 		c.anchor.set(0,0.9); return c; };
-
+Level.prototype.update = function() {
+			this.game.physics.arcade.collide(this.player,this.maplayer);
+			if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+				this.player.body.velocity.x = -200;this.player.scale.x = 1;
+				this.player.play("walk");
+			} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+				this.player.body.velocity.x = 250;this.player.scale.x = -1;
+				this.player.play("walk");
+			}  
+			
+			if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+				this.player.play("jump");
+				if(this.player.body.velocity.y==0)
+				this.player.body.velocity.y = -800;
+				
+			} else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+				//this.player.body.acceleration.y = 120;
+			} else {
+				//this.player.body.velocity.setTo(0, 0);
+				//this.player.body.acceleration.setTo(0, 0);
+				if(this.player.body.velocity.x==0) this.player.play("idle");
+			}
+			}
 
 Level.prototype.quitGame = function() {
 	this.game.state.start("Menu");
