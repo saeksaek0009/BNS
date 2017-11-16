@@ -29,38 +29,6 @@
       "spacing": 0
     },
     {
-      "type": "spritesheet",
-      "key": "tile_set1",
-      "url": "assets/tilemap/tile_set1.png",
-      "frameWidth": 0,
-      "frameHeight": 0,
-      "frameMax": -1,
-      "margin": 0,
-      "spacing": 0
-    },
-    {
-      "type": "spritesheet",
-      "key": "tile_set2",
-      "url": "assets/tilemap/tile_set2.png",
-      "frameWidth": 0,
-      "frameHeight": 0,
-      "frameMax": -1,
-      "margin": 0,
-      "spacing": 0
-    },
-    {
-      "type": "tilemap",
-      "key": "lab7",
-      "url": "assets/tilemap/lab7.json",
-      "format": "TILED_JSON"
-    },
-    {
-      "type": "tilemap",
-      "key": "lab72",
-      "url": "assets/tilemap/lab72.json",
-      "format": "TILED_JSON"
-    },
-    {
       "type": "atlas",
       "key": "player",
       "textureURL": "assets/atlas/player.png",
@@ -80,6 +48,22 @@
       "textureURL": "assets/atlas/devil.png",
       "atlasURL": "assets/atlas/devil.json",
       "format": "TEXTURE_ATLAS_JSON_HASH"
+    },
+    {
+      "type": "spritesheet",
+      "key": "tile_set1",
+      "url": "assets/tilemap/tile_set1.png",
+      "frameWidth": 0,
+      "frameHeight": 0,
+      "frameMax": -1,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "tilemap",
+      "key": "lab7",
+      "url": "assets/tilemap/lab7.json",
+      "format": "TILED_JSON"
     }
   ],
   "start": [{
@@ -95,7 +79,7 @@
     "overwrite": false
   }],
   "meta": {
-    "generated": "1510824296701",
+    "generated": "1510839878645",
     "app": "Phaser Editor",
     "url": "http://phasereditor.boniatillo.com",
     "version": "1.0",
