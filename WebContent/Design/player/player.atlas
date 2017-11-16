@@ -72,7 +72,7 @@
     "minWidth": 16,
     "minHeight": 16,
     "maxWidth": 2048,
-    "maxHeight": 2048,
+    "maxHeight": 1024,
     "square": false,
     "stripWhitespaceX": true,
     "stripWhitespaceY": true,

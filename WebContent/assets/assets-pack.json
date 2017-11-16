@@ -63,8 +63,8 @@
     {
       "type": "atlas",
       "key": "player",
-      "textureURL": "assets/player.png",
-      "atlasURL": "assets/player.json",
+      "textureURL": "assets/atlas/player.png",
+      "atlasURL": "assets/atlas/player.json",
       "format": "TEXTURE_ATLAS_JSON_HASH"
     }
   ],
@@ -81,7 +81,7 @@
     "overwrite": false
   }],
   "meta": {
-    "generated": "1510736779741",
+    "generated": "1510822491506",
     "app": "Phaser Editor",
     "url": "http://phasereditor.boniatillo.com",
     "version": "1.0",
