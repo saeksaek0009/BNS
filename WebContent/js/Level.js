@@ -12,9 +12,7 @@ Level.prototype = proto;
 Level.prototype.create = function() {
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 	this.game.physics.arcade.gravity.y = 1000;
-	//this.addMonkey();
-	//this.moveMonkey();
-	
+
 	
 	
 	this.enemies = this.add.group();
@@ -23,28 +21,23 @@ Level.prototype.create = function() {
 	this.bg.width = this.game.width;
 	this.bg.height = this.game.height;
 	 
-	 this.map = this.game.add.tilemap("lab7");
-	 this.map.addTilesetImage('tile_set1');
+	 this.map = this.game.add.tilemap("lab72");
+	 this.map.addTilesetImage('tile_set2');
 	 this.maplayer = this.map.createLayer("Tile Layer 1");
 	 this.maplayer = this.map.createLayer("Tile Layer 2");
-	 
-	 //this.player=this.addPlayer(600,500);
-	// this.player.play("idle");
-	 
-	 //แสดงสไปรท์
-	 for (x in this.map.objects.Object) {
-			var obj = this.map.objects.Object[x];
-			if (obj.type == "player") {
-				console.log(this.player);
-				this.player = this.addPlayer(obj.x, obj.y);
-				this.game.camera.follow(this.player,
-						Phaser.Camera.FOLLOW_PLATFORMER);
-				this.player.play("walk");
-			} else if (obj.type == "enemy1") {
-				var c = this.addCat(obj.x, obj.y);
-				this.enemies.add(c);
-			} 
-	 }
+	 this.maplayer.resizeWorld();
+	 this.map.setCollisionBetween(0, 17, true, this.maplayer);
+	// แสดง sprite
+	 this.enemies = this.add.group();
+	 for(x in this.map.objects.object){
+		 var obj = this.map.objects.object[x];
+		 if(obj.type == "player"){
+		 console.log(this.player);
+		 this.player = this.addPlayer(obj.x,obj.y);
+		 this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
+		 this.player.play("walk");
+		 }
+		}
 };
 
 Level.prototype.addPlayer = function(x, y) {
@@ -72,10 +65,27 @@ function gframes(key, n) {
 	}
 	return f;
 }
+function mframe(key,n){
+	f=[ ];
+	for(var i=1;i<n;i++){
+	f.push(key+" ("+i+")");
+	}
+	return f;
+	}
 
-
-
-
+Level.prototype.addDevil = function(x, y) {
+	d = this.add.sprite(x, y, "devil");
+	d.animations.add("idle", mframe("Idle",10),12,true);
+	d.play("idle");
+	d.anchor.set(0,0.9);
+	return d;
+	};
+Level.prototype.addCicken = function(x, y) {
+		c = this.add.sprite(x, y, "cicken");
+		
+		c.animations.add("walk", mframe("ck",10),12,true);
+		c.play("idle");
+		c.anchor.set(0,0.9); return c; };
 
 
 Level.prototype.quitGame = function() {

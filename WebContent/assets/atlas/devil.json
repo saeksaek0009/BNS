@@ -1,0 +1,249 @@
+{
+  "frames": {
+    "Idle_000": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 884,
+        "y": 3,
+        "w": 120,
+        "h": 137
+      },
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 31,
+        "w": 120,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_001": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 1004,
+        "y": 4,
+        "w": 120,
+        "h": 136
+      },
+      "spriteSourceSize": {
+        "x": 34,
+        "y": 24,
+        "w": 120,
+        "h": 136
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_002": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 1124,
+        "y": 4,
+        "w": 118,
+        "h": 136
+      },
+      "spriteSourceSize": {
+        "x": 34,
+        "y": 17,
+        "w": 118,
+        "h": 136
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_003": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 1360,
+        "y": 1,
+        "w": 117,
+        "h": 139
+      },
+      "spriteSourceSize": {
+        "x": 34,
+        "y": 9,
+        "w": 117,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_004": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 1242,
+        "y": 0,
+        "w": 118,
+        "h": 140
+      },
+      "spriteSourceSize": {
+        "x": 34,
+        "y": 2,
+        "w": 118,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_005": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 763,
+        "y": 1,
+        "w": 121,
+        "h": 139
+      },
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 2,
+        "w": 121,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_006": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 0,
+        "y": 3,
+        "w": 126,
+        "h": 137
+      },
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 7,
+        "w": 126,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_007": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 126,
+        "y": 6,
+        "w": 127,
+        "h": 134
+      },
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 12,
+        "w": 127,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_008": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 253,
+        "y": 10,
+        "w": 130,
+        "h": 130
+      },
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 17,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_009": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 383,
+        "y": 11,
+        "w": 129,
+        "h": 129
+      },
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 21,
+        "w": 129,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_010": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 512,
+        "y": 11,
+        "w": 126,
+        "h": 129
+      },
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 25,
+        "w": 126,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    },
+    "Idle_011": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 638,
+        "y": 6,
+        "w": 125,
+        "h": 134
+      },
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 28,
+        "w": 125,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 179
+      }
+    }
+  },
+  "meta": {
+    "app": "Phaser Editor",
+    "version": "1",
+    "image": "devil.png"
+  }
+}

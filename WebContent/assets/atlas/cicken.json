@@ -1,0 +1,209 @@
+{
+  "frames": {
+    "ck_000": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 815,
+        "y": 7,
+        "w": 90,
+        "h": 63
+      },
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 35,
+        "w": 90,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_001": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 273,
+        "y": 4,
+        "w": 91,
+        "h": 66
+      },
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 20,
+        "w": 91,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_002": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 91,
+        "h": 70
+      },
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 4,
+        "w": 91,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_003": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 91,
+        "y": 1,
+        "w": 91,
+        "h": 69
+      },
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 18,
+        "w": 91,
+        "h": 69
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_004": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 182,
+        "y": 2,
+        "w": 91,
+        "h": 68
+      },
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 31,
+        "w": 91,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_005": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 364,
+        "y": 3,
+        "w": 90,
+        "h": 67
+      },
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 33,
+        "w": 90,
+        "h": 67
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_006": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 545,
+        "y": 6,
+        "w": 90,
+        "h": 64
+      },
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 36,
+        "w": 90,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_007": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 635,
+        "y": 6,
+        "w": 90,
+        "h": 64
+      },
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 35,
+        "w": 90,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_008": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 454,
+        "y": 6,
+        "w": 91,
+        "h": 64
+      },
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 35,
+        "w": 91,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    },
+    "ck_009": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 725,
+        "y": 6,
+        "w": 90,
+        "h": 64
+      },
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 35,
+        "w": 90,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 104
+      }
+    }
+  },
+  "meta": {
+    "app": "Phaser Editor",
+    "version": "1",
+    "image": "cicken.png"
+  }
+}
