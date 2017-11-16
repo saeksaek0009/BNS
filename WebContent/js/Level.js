@@ -21,8 +21,9 @@ Level.prototype.create = function() {
 	this.bg.width = this.game.width;
 	this.bg.height = this.game.height;
 	 
-	 this.map = this.game.add.tilemap("lab7");
-	 this.map.addTilesetImage('tile_set1');
+	 this.map = this.game.add.tilemap("lab72");
+	 this.map.addTilesetImage('tile_set2');
+	 this.maplayer = this.map.createLayer("Tile Layer 2");
 	 this.maplayer = this.map.createLayer("Tile Layer 1");
 	
 	 this.maplayer.resizeWorld();
