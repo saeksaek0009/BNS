@@ -16,15 +16,24 @@ Level.prototype.create = function() {
 	
 	
 	this.enemies = this.add.group();
-	this.bg = this.game.add.sprite(0, 0, "BG");
+	this.bg = this.game.add.sprite(0, 0, "BG3"); //BG(Map1),BG2(Map2),BG3(Map3)
 	this.bg.fixedToCamera = true;
 	this.bg.width = this.game.width;
 	this.bg.height = this.game.height;
-	 
-	 this.map = this.game.add.tilemap("lab72");
-	 this.map.addTilesetImage('tile_set2');
-	 this.maplayer = this.map.createLayer("Tile Layer 2");
+	
+	this.map = this.game.add.tilemap("lab73");
+	 this.map.addTilesetImage('tile_set3');
 	 this.maplayer = this.map.createLayer("Tile Layer 1");
+	 
+	//map1
+	/* this.map = this.game.add.tilemap("lab7");
+	 this.map.addTilesetImage('tile_set1');
+	 this.maplayer = this.map.createLayer("Tile Layer 1"); */
+	 
+	//map2
+	/* this.map = this.game.add.tilemap("lab72");
+	 this.map.addTilesetImage('tile_set2');
+	 this.maplayer = this.map.createLayer("Tile Layer 1"); */
 	
 	 this.maplayer.resizeWorld();
 	 this.map.setCollisionBetween(0, 17, true, this.maplayer);
