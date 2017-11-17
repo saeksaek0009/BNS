@@ -24,6 +24,7 @@ Menu.prototype.create = function() {
 			"tap");
 	sprite.anchor.set(0.5, 0.5);
 	sprite.scale.set(0.45);
+
 	var twn = this.add.tween(sprite);
 	twn.to({
 		y : 200

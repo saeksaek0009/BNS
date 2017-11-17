@@ -21,27 +21,27 @@ Level.prototype.create = function() {
 	this.bg.height = this.game.height;
 
 	/*
-	 * this.map = this.game.add.tilemap("lab73");
-	 * this.map.addTilesetImage('tile_set3'); this.maplayer =
-	 * this.map.createLayer("Tile Layer 1");
-	 */
-
-	// map1
-	/*
-	 * this.map = this.game.add.tilemap("lab7");
-	 * this.map.addTilesetImage('tile_set1'); this.maplayer =
-	 * this.map.createLayer("Tile Layer 1");
+	  this.map = this.game.add.tilemap("lab73");
+	  this.map.addTilesetImage('tile_set3'); this.maplayer =
+	  this.map.createLayer("Tile Layer 1");
 	 */
 
 	// map2
+	/*this.map = this.game.add.tilemap("lab7");
+	this.map.addTilesetImage('tile_set1');
+	this.maplayer = this.map.createLayer("Tile Layer 1"); */
+	
+	// map1
 	this.map = this.game.add.tilemap("lab72");
 	this.map.addTilesetImage('tile_set2');
 	this.maplayer = this.map.createLayer("Tile Layer 1");
 
+
 	this.maplayer.resizeWorld();
-	this.map.setCollisionBetween(0, 20, true, this.maplayer);
+	this.map.setCollisionBetween(0, 19, true, this.maplayer);
 	// แสดง sprite
 	this.enemies = this.add.group();
+	this.goal = this.add.group();
 	for (x in this.map.objects.object) {
 		var obj = this.map.objects.object[x];
 		if (obj.type == "player") {
@@ -54,11 +54,11 @@ Level.prototype.create = function() {
 			var d = this.addDevil(obj.x, obj.y);
 			this.enemies.add(d);
 		} else if (obj.type == "enemy2") {
-			var c = this.addCicken(obj.x, obj.y);
+			var c = this.addDevil(obj.x, obj.y);
 			this.enemies.add(c);
 		} else if (obj.type == "goal") {
-			var c = this.addGoal(obj.x, obj.y);
-			this.goal.add(c);
+			var g = this.addGoal(obj.x, obj.y);
+			this.goal.add(g);
 		}
 	}
 };
@@ -103,6 +103,7 @@ Level.prototype.hitEnemy = function(p, x) {
 Level.prototype.hitGoal = function(p, x) {
 	this.game.state.start("Menu");
 }
+
 Level.prototype.addDevil = function(x, y) {
 	d = this.add.sprite(x, y, "devil");
 	d.animations.add("idle", gframes("Idle", 10), 12, true);
@@ -113,31 +114,31 @@ Level.prototype.addDevil = function(x, y) {
 	d.body.setSize(20, 120, 100, 0);
 	return d;
 };
-Level.prototype.addCicken = function(x, y) {
-	c = this.add.sprite(x, y, "cicken");
 
-	c.animations.add("walk", mframe("ck", 10), 12, true);
-	c.play("idle");
-	c.anchor.set(0, 0.9);
-	return c;
-};
 Level.prototype.addGoal = function(x, y) {
-	c = this.add.sprite(x, y, "cicken");
+	g = this.add.sprite(x, y, "cicken");
 
-	c.animations.add("walk", mframe("ck", 10), 12, true);
-	c.play("idle");
-	c.anchor.set(0, 0.9);
-	return c;
+	g.animations.add("walk", mframe("ck", 10), 12, true);
+	g.play("idle");
+	g.anchor.set(0, 0.9);
+	g.scale.set(1);
+	this.game.physics.enable(g);
+	g.body.collideWorldBounds = true;
+	return g;
 };
+
+
+
 Level.prototype.update = function() {
 
 	this.game.physics.arcade.collide(this.player, this.maplayer);
-	this.game.physics.arcade.collide(this.enemies, this.maplayer);
-	this.game.physics.arcade.collide(this.goal, this.maplayer);
+		this.game.physics.arcade.collide(this.goal, this.maplayer);
+		this.game.physics.arcade.collide(this.enemies, this.maplayer);
+		this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
+			null, this);
 	this.game.physics.arcade.collide(this.player, this.enemies, this.hitEnemy,
 			null, this);
-	this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
-			null, this);
+	
 	if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
 		this.player.body.velocity.x = -200;
 		this.player.scale.x = 1;
@@ -151,7 +152,7 @@ Level.prototype.update = function() {
 	if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
 		this.player.play("jump");
 		if (this.player.body.velocity.y == 0)
-			this.player.body.velocity.y = -700;
+			this.player.body.velocity.y = -750;
 
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
 		// this.player.body.acceleration.y = 120;

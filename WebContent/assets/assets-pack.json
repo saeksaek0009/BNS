@@ -157,12 +157,6 @@
     },
     {
       "type": "image",
-      "key": "mode",
-      "url": "assets/Story/mode.png",
-      "overwrite": false
-    },
-    {
-      "type": "image",
       "key": "1",
       "url": "assets/Story/1.png",
       "overwrite": false
@@ -211,7 +205,7 @@
     }
   ],
   "meta": {
-    "generated": "1510911246227",
+    "generated": "1510926212163",
     "app": "Phaser Editor",
     "url": "http://phasereditor.boniatillo.com",
     "version": "1.0",
