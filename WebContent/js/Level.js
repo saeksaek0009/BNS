@@ -46,8 +46,11 @@ Level.prototype.create = function() {
 		 this.player = this.addPlayer(obj.x,obj.y);
 		 this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 		 this.player.play("idle");
-		 }
+		 } else if (obj.type == "enemy1") {
+				var d = this.addDevil(obj.x, obj.y);
+				this.enemies.add(d);
 		}
+	 }
 };
 
 Level.prototype.addPlayer = function(x, y) {
@@ -64,7 +67,7 @@ Level.prototype.addPlayer = function(x, y) {
 	p.play("idle");
 	p.body.collideWorldBounds = true;
 	p.body.drag.setTo(500, 0);
-	p.body.setSize(20,150,80,0);
+	p.body.setSize(20,150,80,-7);
 	return p;
 
 };
@@ -86,9 +89,12 @@ function mframe(key,n){
 
 Level.prototype.addDevil = function(x, y) {
 	d = this.add.sprite(x, y, "devil");
-	d.animations.add("idle", mframe("Idle",10),12,true);
+	d.animations.add("idle", gframes("Idle",10),12,true);
 	d.play("idle");
 	d.anchor.set(0,0.9);
+	//this.game.physics.enable(d);
+	//d.body.collideWorldBounds = true;
+	//d.body.setSize(25,5,5,0);
 	return d;
 	};
 Level.prototype.addCicken = function(x, y) {
@@ -110,7 +116,7 @@ Level.prototype.update = function() {
 			if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
 				this.player.play("jump");
 				if(this.player.body.velocity.y==0)
-				this.player.body.velocity.y = -800;
+				this.player.body.velocity.y = -700;
 				
 			} else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
 				//this.player.body.acceleration.y = 120;
