@@ -128,6 +128,12 @@
       "key": "Credit",
       "url": "assets/images/Credit.png",
       "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "tap",
+      "url": "assets/images/tap.png",
+      "overwrite": false
     }
   ],
   "preload": [{
@@ -139,56 +145,8 @@
   "Story": [
     {
       "type": "image",
-      "key": "1",
-      "url": "assets/Story/1.jpg",
-      "overwrite": false
-    },
-    {
-      "type": "image",
       "key": "10",
       "url": "assets/Story/10.jpg",
-      "overwrite": false
-    },
-    {
-      "type": "image",
-      "key": "2",
-      "url": "assets/Story/2.jpg",
-      "overwrite": false
-    },
-    {
-      "type": "image",
-      "key": "3",
-      "url": "assets/Story/3.jpg",
-      "overwrite": false
-    },
-    {
-      "type": "image",
-      "key": "4",
-      "url": "assets/Story/4.jpg",
-      "overwrite": false
-    },
-    {
-      "type": "image",
-      "key": "5",
-      "url": "assets/Story/5.jpg",
-      "overwrite": false
-    },
-    {
-      "type": "image",
-      "key": "6",
-      "url": "assets/Story/6.jpg",
-      "overwrite": false
-    },
-    {
-      "type": "image",
-      "key": "7",
-      "url": "assets/Story/7.jpg",
-      "overwrite": false
-    },
-    {
-      "type": "image",
-      "key": "8",
-      "url": "assets/Story/8.jpg",
       "overwrite": false
     },
     {
@@ -202,10 +160,58 @@
       "key": "mode",
       "url": "assets/Story/mode.png",
       "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "1",
+      "url": "assets/Story/1.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "2",
+      "url": "assets/Story/2.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "3",
+      "url": "assets/Story/3.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "4",
+      "url": "assets/Story/4.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "5",
+      "url": "assets/Story/5.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "6",
+      "url": "assets/Story/6.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "7",
+      "url": "assets/Story/7.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "8",
+      "url": "assets/Story/8.png",
+      "overwrite": false
     }
   ],
   "meta": {
-    "generated": "1510894536967",
+    "generated": "1510911246227",
     "app": "Phaser Editor",
     "url": "http://phasereditor.boniatillo.com",
     "version": "1.0",

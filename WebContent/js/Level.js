@@ -13,47 +13,54 @@ Level.prototype.create = function() {
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 	this.game.physics.arcade.gravity.y = 1000;
 
-	
-	
 	this.enemies = this.add.group();
-	this.bg = this.game.add.sprite(0, 0, "BG2"); //BG(Map1),BG2(Map2),BG3(Map3)
+	this.goal = this.add.group();
+	this.bg = this.game.add.sprite(0, 0, "BG2"); // BG(Map1),BG2(Map2),BG3(Map3)
 	this.bg.fixedToCamera = true;
 	this.bg.width = this.game.width;
 	this.bg.height = this.game.height;
-	
-	/*this.map = this.game.add.tilemap("lab73");
-	 this.map.addTilesetImage('tile_set3');
-	 this.maplayer = this.map.createLayer("Tile Layer 1");*/
-	 
-	//map1
-	/* this.map = this.game.add.tilemap("lab7");
-	 this.map.addTilesetImage('tile_set1');
-	 this.maplayer = this.map.createLayer("Tile Layer 1"); */
-	 
-	//map2
-	 this.map = this.game.add.tilemap("lab72");
-	 this.map.addTilesetImage('tile_set2');
-	 this.maplayer = this.map.createLayer("Tile Layer 1"); 
-	
-	 this.maplayer.resizeWorld();
-	 this.map.setCollisionBetween(0, 20, true, this.maplayer);
+
+	/*
+	 * this.map = this.game.add.tilemap("lab73");
+	 * this.map.addTilesetImage('tile_set3'); this.maplayer =
+	 * this.map.createLayer("Tile Layer 1");
+	 */
+
+	// map1
+	/*
+	 * this.map = this.game.add.tilemap("lab7");
+	 * this.map.addTilesetImage('tile_set1'); this.maplayer =
+	 * this.map.createLayer("Tile Layer 1");
+	 */
+
+	// map2
+	this.map = this.game.add.tilemap("lab72");
+	this.map.addTilesetImage('tile_set2');
+	this.maplayer = this.map.createLayer("Tile Layer 1");
+
+	this.maplayer.resizeWorld();
+	this.map.setCollisionBetween(0, 20, true, this.maplayer);
 	// แสดง sprite
-	 this.enemies = this.add.group();
-	 for(x in this.map.objects.object){
-		 var obj = this.map.objects.object[x];
-		 if(obj.type == "player"){
-		 console.log(this.player);
-		 this.player = this.addPlayer(obj.x,obj.y);
-		 this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
-		 this.player.play("idle");
-		 } else if (obj.type == "enemy1") {
-				var d = this.addDevil(obj.x, obj.y);
-				this.enemies.add(d);
-		 } else if (obj.type == "enemy2") {
-			 	var c = this.addCicken(obj.x, obj.y);
-			 	this.enemies.add(c);
+	this.enemies = this.add.group();
+	for (x in this.map.objects.object) {
+		var obj = this.map.objects.object[x];
+		if (obj.type == "player") {
+			console.log(this.player);
+			this.player = this.addPlayer(obj.x, obj.y);
+			this.game.camera.follow(this.player,
+					Phaser.Camera.FOLLOW_PLATFORMER);
+			this.player.play("idle");
+		} else if (obj.type == "enemy1") {
+			var d = this.addDevil(obj.x, obj.y);
+			this.enemies.add(d);
+		} else if (obj.type == "enemy2") {
+			var c = this.addCicken(obj.x, obj.y);
+			this.enemies.add(c);
+		} else if (obj.type == "goal") {
+			var c = this.addGoal(obj.x, obj.y);
+			this.goal.add(c);
 		}
-	 }
+	}
 };
 
 Level.prototype.addPlayer = function(x, y) {
@@ -62,15 +69,15 @@ Level.prototype.addPlayer = function(x, y) {
 	p.animations.add("fight", gframes("fight", 15), 12, true);
 	p.animations.add("jump", gframes("jump", 15), 12, true);
 	p.animations.add("walk", gframes("walk", 15), 12, true);
-    p.scale.x = -1;
-	p.anchor.set(0.6,1);
-	
+	p.scale.x = -1;
+	p.anchor.set(0.6, 1);
+
 	p.smoothed = false;
 	this.game.physics.arcade.enable(p);
 	p.play("idle");
 	p.body.collideWorldBounds = true;
 	p.body.drag.setTo(500, 0);
-	p.body.setSize(20,150,60,-7);
+	p.body.setSize(20, 150, 60, -7);
 	return p;
 
 };
@@ -82,61 +89,79 @@ function gframes(key, n) {
 	}
 	return f;
 }
-function mframe(key,n){
-	f=[ ];
-	for(var i=1;i<n;i++){
-	f.push(key+" ("+i+")");
+function mframe(key, n) {
+	f = [];
+	for (var i = 1; i < n; i++) {
+		f.push(key + " (" + i + ")");
 	}
 	return f;
-	}
-
-Level.prototype.hitEnemy=function(p, x){
-	this.game.state.start("Menu");
 }
 
+Level.prototype.hitEnemy = function(p, x) {
+	this.game.state.start("Menu");
+}
+Level.prototype.hitGoal = function(p, x) {
+	this.game.state.start("Menu");
+}
 Level.prototype.addDevil = function(x, y) {
 	d = this.add.sprite(x, y, "devil");
-	d.animations.add("idle", gframes("Idle",10),12,true);
+	d.animations.add("idle", gframes("Idle", 10), 12, true);
 	d.play("idle");
-	d.anchor.set(0,0.9);
+	d.anchor.set(0, 0.9);
 	this.game.physics.enable(d);
 	d.body.collideWorldBounds = true;
-	d.body.setSize(20,120,100,0);
+	d.body.setSize(20, 120, 100, 0);
 	return d;
-	};
+};
 Level.prototype.addCicken = function(x, y) {
-		c = this.add.sprite(x, y, "cicken");
-		
-		c.animations.add("walk", mframe("ck",10),12,true);
-		c.play("idle");
-		c.anchor.set(0,0.9); return c; };
+	c = this.add.sprite(x, y, "cicken");
+
+	c.animations.add("walk", mframe("ck", 10), 12, true);
+	c.play("idle");
+	c.anchor.set(0, 0.9);
+	return c;
+};
+Level.prototype.addGoal = function(x, y) {
+	c = this.add.sprite(x, y, "cicken");
+
+	c.animations.add("walk", mframe("ck", 10), 12, true);
+	c.play("idle");
+	c.anchor.set(0, 0.9);
+	return c;
+};
 Level.prototype.update = function() {
-	
-			this.game.physics.arcade.collide(this.player,this.maplayer);
-			this.game.physics.arcade.collide(this.enemies, this.maplayer);
-			this.game.physics.arcade.collide(this.player, this.enemies, this.hitEnemy,null,this);
-	
-			if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-				this.player.body.velocity.x = -200;this.player.scale.x = 1;
-				this.player.play("walk");
-			} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-				this.player.body.velocity.x = 250;this.player.scale.x = -1;
-				this.player.play("walk");
-			}  
-			
-			if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-				this.player.play("jump");
-				if(this.player.body.velocity.y==0)
-				this.player.body.velocity.y = -700;
-				
-			} else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-				//this.player.body.acceleration.y = 120;
-			} else {
-				//this.player.body.velocity.setTo(0, 0);
-				//this.player.body.acceleration.setTo(0, 0);
-				if(this.player.body.velocity.x==0) this.player.play("idle");
-			}
-			}
+
+	this.game.physics.arcade.collide(this.player, this.maplayer);
+	this.game.physics.arcade.collide(this.enemies, this.maplayer);
+	this.game.physics.arcade.collide(this.goal, this.maplayer);
+	this.game.physics.arcade.collide(this.player, this.enemies, this.hitEnemy,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
+			null, this);
+	if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+		this.player.body.velocity.x = -200;
+		this.player.scale.x = 1;
+		this.player.play("walk");
+	} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+		this.player.body.velocity.x = 250;
+		this.player.scale.x = -1;
+		this.player.play("walk");
+	}
+
+	if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+		this.player.play("jump");
+		if (this.player.body.velocity.y == 0)
+			this.player.body.velocity.y = -700;
+
+	} else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+		// this.player.body.acceleration.y = 120;
+	} else {
+		// this.player.body.velocity.setTo(0, 0);
+		// this.player.body.acceleration.setTo(0, 0);
+		if (this.player.body.velocity.x == 0)
+			this.player.play("idle");
+	}
+}
 
 Level.prototype.quitGame = function() {
 	this.game.state.start("Menu");

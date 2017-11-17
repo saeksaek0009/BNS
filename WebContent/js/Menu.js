@@ -21,8 +21,13 @@ Menu.prototype.create = function() {
 	{
 	}
 	var sprite = this.add.sprite(this.world.centerX, this.world.centerY,
-			"tap-to-start");
+			"tap");
 	sprite.anchor.set(0.5, 0.5);
+	sprite.scale.set(0.45);
+	var twn = this.add.tween(sprite);
+	twn.to({
+		y : 200
+	}, 1000, "Quad.easeInOut", true, 0, Number.MAX_VALUE, true);
 	
 	story = this.add.sprite(this.world.centerX, 500, "story");
 	story.anchor.set(1.25, -0.5);
@@ -36,6 +41,10 @@ Menu.prototype.create = function() {
 	credit.inputEnabled = true;
 	
 	this.input.onDown.add(this.startGame, this);
+	
+	text = this.add.text(30, this.world.height - 40, "PUBG", {
+		fill : 'white'
+	});
 };
 
 Menu.prototype.startStory = function() {
