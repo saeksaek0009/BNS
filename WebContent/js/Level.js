@@ -49,6 +49,9 @@ Level.prototype.create = function() {
 		 } else if (obj.type == "enemy1") {
 				var d = this.addDevil(obj.x, obj.y);
 				this.enemies.add(d);
+		 } else if (obj.type == "enemy2") {
+			 	var c = this.addCicken(obj.x, obj.y);
+			 	this.enemies.add(c);
 		}
 	 }
 };
@@ -67,7 +70,7 @@ Level.prototype.addPlayer = function(x, y) {
 	p.play("idle");
 	p.body.collideWorldBounds = true;
 	p.body.drag.setTo(500, 0);
-	p.body.setSize(20,150,80,-7);
+	p.body.setSize(20,150,60,-7);
 	return p;
 
 };
@@ -87,14 +90,18 @@ function mframe(key,n){
 	return f;
 	}
 
+Level.prototype.hitEnemy=function(p, x){
+	this.game.state.start("Menu");
+}
+
 Level.prototype.addDevil = function(x, y) {
 	d = this.add.sprite(x, y, "devil");
 	d.animations.add("idle", gframes("Idle",10),12,true);
 	d.play("idle");
 	d.anchor.set(0,0.9);
-	//this.game.physics.enable(d);
-	//d.body.collideWorldBounds = true;
-	//d.body.setSize(25,5,5,0);
+	this.game.physics.enable(d);
+	d.body.collideWorldBounds = true;
+	d.body.setSize(20,120,100,0);
 	return d;
 	};
 Level.prototype.addCicken = function(x, y) {
@@ -104,7 +111,11 @@ Level.prototype.addCicken = function(x, y) {
 		c.play("idle");
 		c.anchor.set(0,0.9); return c; };
 Level.prototype.update = function() {
+	
 			this.game.physics.arcade.collide(this.player,this.maplayer);
+			this.game.physics.arcade.collide(this.enemies, this.maplayer);
+			this.game.physics.arcade.collide(this.player, this.enemies, this.hitEnemy,null,this);
+	
 			if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
 				this.player.body.velocity.x = -200;this.player.scale.x = 1;
 				this.player.play("walk");
