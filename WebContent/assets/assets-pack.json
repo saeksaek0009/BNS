@@ -108,6 +108,20 @@
       "key": "AS",
       "url": "assets/images/AS.png",
       "overwrite": false
+    },
+    {
+      "type": "atlas",
+      "key": "wizard",
+      "textureURL": "assets/atlas/wizard.png",
+      "atlasURL": "assets/atlas/wizard.json",
+      "format": "TEXTURE_ATLAS_JSON_HASH"
+    },
+    {
+      "type": "atlas",
+      "key": "witch",
+      "textureURL": "assets/atlas/witch.png",
+      "atlasURL": "assets/atlas/witch.json",
+      "format": "TEXTURE_ATLAS_JSON_HASH"
     }
   ],
   "start": [
@@ -204,8 +218,14 @@
       "overwrite": false
     }
   ],
+  "Level2": [{
+    "type": "atlas",
+    "key": "atlas",
+    "textureURL": "assets/atlas/player.png",
+    "format": "TEXTURE_ATLAS_JSON_ARRAY"
+  }],
   "meta": {
-    "generated": "1510926212163",
+    "generated": "1510983707133",
     "app": "Phaser Editor",
     "url": "http://phasereditor.boniatillo.com",
     "version": "1.0",

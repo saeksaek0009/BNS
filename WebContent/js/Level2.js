@@ -1,19 +1,19 @@
 /**
- * Level state.
+ * Level2 state.
  */
-function Level() {
+function Level2() {
 	Phaser.State.call(this);
 }
 
 /** @type Phaser.State */
 var proto = Object.create(Phaser.State);
-Level.prototype = proto;
+Level2.prototype = proto;
 
-Level.prototype.create = function() {
+Level2.prototype.create = function() {
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 	this.game.physics.arcade.gravity.y = 1000;
 
-	this.bg = this.game.add.sprite(0, 0, "BG"); // BG(Map1),BG2(Map2),BG3(Map3)
+	this.bg = this.game.add.sprite(0, 0, "BG2"); // BG(Map1),BG2(Map2),BG3(Map3)
 	this.bg.fixedToCamera = true;
 	this.bg.width = this.game.width;
 	this.bg.height = this.game.height;
@@ -30,8 +30,8 @@ Level.prototype.create = function() {
 	this.maplayer = this.map.createLayer("Tile Layer 1"); */
 	
 	// map1
-	this.map = this.game.add.tilemap("lab7");
-	this.map.addTilesetImage('tile_set1');
+	this.map = this.game.add.tilemap("lab72");
+	this.map.addTilesetImage('tile_set2');
 	this.maplayer = this.map.createLayer("Tile Layer 1");
 
 
@@ -66,7 +66,7 @@ Level.prototype.create = function() {
 	}
 };
 
-Level.prototype.addPlayer = function(x, y) {
+Level2.prototype.addPlayer = function(x, y) {
 	p = this.add.sprite(x, y, "player");
 	p.animations.add("idle", gframes("idle", 15), 12, true);
 	p.animations.add("fight", gframes("fight", 15), 20, true);
@@ -100,14 +100,14 @@ function mframe(key, n) {
 	return f;
 }
 
-Level.prototype.hitEnemy = function(p, x) {
+Level2.prototype.hitEnemy = function(p, x) {
 	this.game.state.start("Level3");
 }
-Level.prototype.hitGoal = function(p, x) {
+Level2.prototype.hitGoal = function(p, x) {
 	this.game.state.start("Menu");
 }
 
-Level.prototype.addDevil = function(x, y) {
+Level2.prototype.addDevil = function(x, y) {
 	d = this.add.sprite(x, y, "devil");
 	d.animations.add("idle", gframes("Idle", 10), 12, true);
 	d.play("idle");
@@ -118,7 +118,7 @@ Level.prototype.addDevil = function(x, y) {
 	return d;
 };
 
-Level.prototype.addWitch = function(x, y) {
+Level2.prototype.addWitch = function(x, y) {
 	m = this.add.sprite(x, y, "witch");
 	m.animations.add("idle", gframes("idle", 12), 12, true);
 	m.animations.add("fight", gframes("fight", 16), 12, true);
@@ -130,7 +130,7 @@ Level.prototype.addWitch = function(x, y) {
 	return m;
 };
 
-Level.prototype.addWizard = function(x, y) {
+Level2.prototype.addWizard = function(x, y) {
 	w = this.add.sprite(x, y, "wizard");
 	w.animations.add("idle", gframes("Idle", 12), 12, true);
 	w.animations.add("fight", gframes("fight", 12), 12, true);
@@ -143,7 +143,7 @@ Level.prototype.addWizard = function(x, y) {
 	return w;
 };
 
-Level.prototype.addGoal = function(x, y) {
+Level2.prototype.addGoal = function(x, y) {
 	g = this.add.sprite(x, y, "cicken");
 	g.animations.add("walk", mframe("ck", 10), 12, true);
 	g.play("idle");
@@ -156,7 +156,7 @@ Level.prototype.addGoal = function(x, y) {
 
 
 
-Level.prototype.update = function() {
+Level2.prototype.update = function() {
 
 	this.game.physics.arcade.collide(this.player, this.maplayer);
 		this.game.physics.arcade.collide(this.goal, this.maplayer);
@@ -200,6 +200,6 @@ Level.prototype.update = function() {
 	
 }
 
-Level.prototype.quitGame = function() {
+Level2.prototype.quitGame = function() {
 	this.game.state.start("Menu");
 };
