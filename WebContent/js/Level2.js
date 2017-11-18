@@ -139,7 +139,7 @@ Level2.prototype.addWizard = function(x, y) {
 	w.scale.set(1.5);
 	this.game.physics.enable(w);
 	w.body.collideWorldBounds = true;
-	w.body.setSize(20, 120, 100, 0);
+	w.body.setSize(20, 130, 100, 0);
 	return w;
 };
 

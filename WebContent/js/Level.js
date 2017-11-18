@@ -33,8 +33,19 @@ Level.prototype.create = function() {
 	this.map = this.game.add.tilemap("lab7");
 	this.map.addTilesetImage('tile_set1');
 	this.maplayer = this.map.createLayer("Tile Layer 1");
-
-
+	
+	this.input.keyboard.addKeyCapture([
+	                               	Phaser.Keyboard.LEFT,
+	                               	Phaser.Keyboard.RIGHT,
+	                               	Phaser.Keyboard.UP,
+	                               	Phaser.Keyboard.DOWN,
+	                               	Phaser.Keyboard.SPACEBAR,
+	                               	
+	                               	
+	                               	]);
+	this.createWeapon();
+	//this.player.events.onInputDown.add(this.fireWeapon, this);
+	
 	this.maplayer.resizeWorld();
 	this.map.setCollisionBetween(0, 19, true, this.maplayer);
 	// แสดง sprite
@@ -64,6 +75,7 @@ Level.prototype.create = function() {
 			this.goal.add(g);
 		}
 	}
+	
 };
 
 Level.prototype.addPlayer = function(x, y) {
@@ -101,7 +113,7 @@ function mframe(key, n) {
 }
 
 Level.prototype.hitEnemy = function(p, x) {
-	this.game.state.start("Level3");
+	this.game.state.start("Level2");
 }
 Level.prototype.hitGoal = function(p, x) {
 	this.game.state.start("Menu");
@@ -123,10 +135,11 @@ Level.prototype.addWitch = function(x, y) {
 	m.animations.add("idle", gframes("idle", 12), 12, true);
 	m.animations.add("fight", gframes("fight", 16), 12, true);
 	m.play("idle");
-	m.anchor.set(0, 0.9);
+	m.anchor.set(0, 2);
 	m.scale.set(2);
 	this.game.physics.enable(m);
 	m.body.collideWorldBounds = true;
+	m.body.setSize(20, 120, 100, 0);
 	return m;
 };
 
@@ -153,8 +166,17 @@ Level.prototype.addGoal = function(x, y) {
 	g.body.collideWorldBounds = true;
 	return g;
 };
-
-
+Level.prototype.createWeapon = function() {
+	this.weapon = this.add.weapon(10,"boniatillo",1);
+	this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+	this.weapon.trackSprite(this.player,0,-50);
+	this.weapon.bulletSpeed = 500;
+	this.weapon.fireAngle = 0;
+	this.weapon.rate = 600;
+}
+Level.prototype.fireWeapon = function(){
+	this.createWeapon().fire();
+	};
 
 Level.prototype.update = function() {
 
@@ -182,6 +204,7 @@ Level.prototype.update = function() {
 		this.player.play("walk");
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 		this.player.play("fight");
+		this.createWeapon();
 	}
 
 	if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {

@@ -80,7 +80,7 @@ Level3.prototype.addPlayer = function(x, y) {
 	p.play("idle");
 	p.body.collideWorldBounds = true;
 	p.body.drag.setTo(500, 0);
-	p.body.setSize(20, 150, 60, -7);
+	p.body.setSize(20, 160, 60, -7);
 	return p;
 
 };
@@ -122,11 +122,12 @@ Level3.prototype.addWitch = function(x, y) {
 	m = this.add.sprite(x, y, "witch");
 	m.animations.add("idle", gframes("idle", 12), 12, true);
 	m.animations.add("fight", gframes("fight", 16), 12, true);
-	m.play("idle");
-	m.anchor.set(0, 0.9);
+	m.play("fight");
+	m.anchor.set(0, 0);
 	m.scale.set(2);
 	this.game.physics.enable(m);
 	m.body.collideWorldBounds = true;
+	m.body.setSize(0, 165, 0, 95);
 	return m;
 };
 
