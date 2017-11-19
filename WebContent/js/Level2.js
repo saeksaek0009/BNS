@@ -101,10 +101,10 @@ function mframe(key, n) {
 }
 
 Level2.prototype.hitEnemy = function(p, x) {
-	this.game.state.start("Level3");
+	this.game.state.start("Level2");
 }
 Level2.prototype.hitGoal = function(p, x) {
-	this.game.state.start("Menu");
+	this.game.state.start("Level3");
 }
 
 Level2.prototype.addDevil = function(x, y) {

@@ -122,6 +122,12 @@
       "textureURL": "assets/atlas/witch.png",
       "atlasURL": "assets/atlas/witch.json",
       "format": "TEXTURE_ATLAS_JSON_HASH"
+    },
+    {
+      "type": "image",
+      "key": "button",
+      "url": "assets/images/button.png",
+      "overwrite": false
     }
   ],
   "start": [
@@ -224,8 +230,70 @@
     "textureURL": "assets/atlas/player.png",
     "format": "TEXTURE_ATLAS_JSON_ARRAY"
   }],
+  "ltem": [
+    {
+      "type": "image",
+      "key": "one",
+      "url": "assets/Item/'.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "two",
+      "url": "assets/Item/23163586_1155583087909553_187672009_n.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "tanx",
+      "url": "assets/Item/23163727_1155583091242886_293651494_n.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "as",
+      "url": "assets/Item/23163788_1155583084576220_203169807_n.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "as",
+      "url": "assets/Item/23163821_1155583097909552_508035856_n.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "ad",
+      "url": "assets/Item/23192768_1155583111242884_1887351482_n.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "ac",
+      "url": "assets/Item/23192993_1155583094576219_1396042252_n.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "sd",
+      "url": "assets/Item/23193061_1155583101242885_1489432336_n.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "da",
+      "url": "assets/Item/23202055_1155583107909551_1352024764_n.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "wa",
+      "url": "assets/Item/23232167_1155583081242887_912936238_n.png",
+      "overwrite": false
+    }
+  ],
   "meta": {
-    "generated": "1510988384863",
+    "generated": "1511082641798",
     "app": "Phaser Editor",
     "url": "http://phasereditor.boniatillo.com",
     "version": "1.0",

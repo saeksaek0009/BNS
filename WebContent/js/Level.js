@@ -18,6 +18,8 @@ Level.prototype.create = function() {
 	this.bg.width = this.game.width;
 	this.bg.height = this.game.height;
 
+
+
 	/*
 	  this.map = this.game.add.tilemap("lab73");
 	  this.map.addTilesetImage('tile_set3'); this.maplayer =
@@ -34,17 +36,14 @@ Level.prototype.create = function() {
 	this.map.addTilesetImage('tile_set1');
 	this.maplayer = this.map.createLayer("Tile Layer 1");
 	
-	this.input.keyboard.addKeyCapture([
-	                               	Phaser.Keyboard.LEFT,
-	                               	Phaser.Keyboard.RIGHT,
-	                               	Phaser.Keyboard.UP,
-	                               	Phaser.Keyboard.DOWN,
-	                               	Phaser.Keyboard.SPACEBAR,
+	
 	                               	
 	                               	
-	                               	]);
-	this.createWeapon();
-	//this.player.events.onInputDown.add(this.fireWeapon, this);
+	                               	
+	                       
+	                               	
+	                              
+	
 	
 	this.maplayer.resizeWorld();
 	this.map.setCollisionBetween(0, 19, true, this.maplayer);
@@ -113,10 +112,10 @@ function mframe(key, n) {
 }
 
 Level.prototype.hitEnemy = function(p, x) {
-	this.game.state.start("Level2");
+	this.game.state.start("Level1");
 }
 Level.prototype.hitGoal = function(p, x) {
-	this.game.state.start("Menu");
+	this.game.state.start("Level2");
 }
 
 Level.prototype.addDevil = function(x, y) {
@@ -161,22 +160,13 @@ Level.prototype.addGoal = function(x, y) {
 	g.animations.add("walk", mframe("ck", 10), 12, true);
 	g.play("idle");
 	g.anchor.set(0, 0.9);
-	g.scale.set(1.5);
+	g.scale.set(2);
 	this.game.physics.enable(g);
 	g.body.collideWorldBounds = true;
+	g.body.setSize(0, 120, 0, 90);
 	return g;
 };
-Level.prototype.createWeapon = function() {
-	this.weapon = this.add.weapon(10,"boniatillo",1);
-	this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-	this.weapon.trackSprite(this.player,0,-50);
-	this.weapon.bulletSpeed = 500;
-	this.weapon.fireAngle = 0;
-	this.weapon.rate = 600;
-}
-Level.prototype.fireWeapon = function(){
-	this.createWeapon().fire();
-	};
+
 
 Level.prototype.update = function() {
 
@@ -204,7 +194,7 @@ Level.prototype.update = function() {
 		this.player.play("walk");
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 		this.player.play("fight");
-		this.createWeapon();
+		
 	}
 
 	if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
@@ -220,8 +210,9 @@ Level.prototype.update = function() {
 		if (this.player.body.velocity.x == 0)
 			this.player.play("idle");
 	}
-	
 }
+
+
 
 Level.prototype.quitGame = function() {
 	this.game.state.start("Menu");
