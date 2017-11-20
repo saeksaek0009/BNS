@@ -52,6 +52,7 @@ Level.prototype.create = function() {
 	this.goal = this.add.group();
 	this.wizard = this.add.group();
 	this.witch = this.add.group();
+	this.coin = this.add.group();
 	for (x in this.map.objects.object) {
 		var obj = this.map.objects.object[x];
 		if (obj.type == "player") {
@@ -72,7 +73,10 @@ Level.prototype.create = function() {
 		} else if (obj.type == "goal") {
 			var g = this.addGoal(obj.x, obj.y);
 			this.goal.add(g);
-		}
+		} else if (obj.type == "coin") {
+			var c = this.addCoin(obj.x, obj.y);
+			this.coin.add(c);
+			}
 	}
 	
 };
@@ -117,6 +121,30 @@ Level.prototype.hitEnemy = function(p, x) {
 Level.prototype.hitGoal = function(p, x) {
 	this.game.state.start("Level2");
 }
+Level.prototype.hitCoin = function(p, x) {
+	
+	
+		// stop all monkey's movements
+		//this.tweens.remove();
+
+		// rotate monkey
+		//var twn = this.add.tween(this.coin);
+		//twn.to({
+			//angle : this.coin.angle + 360
+		//}, 1000, "Linear", true);
+
+		// scale monkey
+		//twn = this.add.tween(this.coin.scale);
+		//twn.to({
+		//	x : 0.1,
+		//	y : 0.1
+		//}, 1000, "Linear", true);
+
+		// when tween completes, quit the game
+	
+	
+
+}
 
 Level.prototype.addDevil = function(x, y) {
 	d = this.add.sprite(x, y, "devil");
@@ -142,6 +170,17 @@ Level.prototype.addWitch = function(x, y) {
 	return m;
 };
 
+Level.prototype.addCoin = function(x, y) {
+	c = this.add.sprite(x, y, "coin");
+	c.animations.add("coin", gframes("coin", 12), 12, true);
+	c.anchor.set(0, 2);
+	c.scale.set(0.5);
+	this.game.physics.enable(c);
+	c.body.collideWorldBounds = true;
+	c.play("coin");
+	return c;
+};
+
 Level.prototype.addWizard = function(x, y) {
 	w = this.add.sprite(x, y, "wizard");
 	w.animations.add("idle", gframes("Idle", 12), 12, true);
@@ -159,11 +198,11 @@ Level.prototype.addGoal = function(x, y) {
 	g = this.add.sprite(x, y, "cicken");
 	g.animations.add("walk", mframe("ck", 10), 12, true);
 	g.play("idle");
-	g.anchor.set(0, 0.9);
+	g.anchor.set(-0.5, 0.5);
 	g.scale.set(2);
 	this.game.physics.enable(g);
 	g.body.collideWorldBounds = true;
-	g.body.setSize(0, 120, 0, 90);
+	g.body.setSize(0, 120, 80, 90);
 	return g;
 };
 
@@ -172,11 +211,14 @@ Level.prototype.update = function() {
 
 	this.game.physics.arcade.collide(this.player, this.maplayer);
 		this.game.physics.arcade.collide(this.goal, this.maplayer);
+		this.game.physics.arcade.collide(this.coin, this.maplayer);
 		this.game.physics.arcade.collide(this.wizard, this.maplayer);
 		this.game.physics.arcade.collide(this.witch, this.maplayer);
 		this.game.physics.arcade.collide(this.enemies, this.maplayer);
 		this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
 			null, this);
+		this.game.physics.arcade.collide(this.player, this.coin, this.hitCoin,
+				null, this);
 		this.game.physics.arcade.collide(this.player, this.wizard, this.hitEnemy,
 				null, this);
 		this.game.physics.arcade.collide(this.player, this.witch, this.hitEnemy,
@@ -189,7 +231,7 @@ Level.prototype.update = function() {
 		this.player.scale.x = 1;
 		this.player.play("walk");
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-		this.player.body.velocity.x = 250;
+		this.player.body.velocity.x = 2500;
 		this.player.scale.x = -1;
 		this.player.play("walk");
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
