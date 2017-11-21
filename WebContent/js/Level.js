@@ -233,7 +233,7 @@ Level.prototype.update = function() {
 		this.player.scale.x = 1;
 		this.player.play("walk");
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-		this.player.body.velocity.x = 2500;
+		this.player.body.velocity.x = 250;
 		this.player.scale.x = -1;
 		this.player.play("walk");
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
