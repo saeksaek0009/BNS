@@ -17,7 +17,9 @@ Level.prototype.create = function() {
 	this.bg.fixedToCamera = true;
 	this.bg.width = this.game.width;
 	this.bg.height = this.game.height;
-
+	
+	//this.music = this.add.sound("music",1,true);
+	//this.music.play();
 
 
 	/*

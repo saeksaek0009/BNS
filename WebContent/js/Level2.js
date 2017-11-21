@@ -42,6 +42,7 @@ Level2.prototype.create = function() {
 	this.goal = this.add.group();
 	this.wizard = this.add.group();
 	this.witch = this.add.group();
+	this.coin = this.add.group();
 	for (x in this.map.objects.object) {
 		var obj = this.map.objects.object[x];
 		if (obj.type == "player") {
@@ -62,7 +63,10 @@ Level2.prototype.create = function() {
 		} else if (obj.type == "goal") {
 			var g = this.addGoal(obj.x, obj.y);
 			this.goal.add(g);
-		}
+		} else if (obj.type == "coin") {
+			var c = this.addCoin(obj.x, obj.y);
+			this.coin.add(c);
+			}
 	}
 };
 
@@ -106,6 +110,30 @@ Level2.prototype.hitEnemy = function(p, x) {
 Level2.prototype.hitGoal = function(p, x) {
 	this.game.state.start("Level3");
 }
+Level2.prototype.hitCoin = function(p, x) {
+	
+	
+	// stop all monkey's movements
+	//this.tweens.remove();
+
+	// rotate monkey
+	//var twn = this.add.tween(this.coin);
+	//twn.to({
+		//angle : this.coin.angle + 360
+	//}, 1000, "Linear", true);
+
+	// scale monkey
+	//twn = this.add.tween(this.coin.scale);
+	//twn.to({
+	//	x : 0.1,
+	//	y : 0.1
+	//}, 1000, "Linear", true);
+
+	// when tween completes, quit the game
+
+
+
+}
 
 Level2.prototype.addDevil = function(x, y) {
 	d = this.add.sprite(x, y, "devil");
@@ -143,6 +171,17 @@ Level2.prototype.addWizard = function(x, y) {
 	return w;
 };
 
+Level2.prototype.addCoin = function(x, y) {
+	c = this.add.sprite(x, y, "coin");
+	c.animations.add("coin", gframes("coin", 12), 12, true);
+	c.anchor.set(0, 2);
+	c.scale.set(0.5);
+	this.game.physics.enable(c);
+	c.body.collideWorldBounds = true;
+	c.play("coin");
+	return c;
+};
+
 Level2.prototype.addGoal = function(x, y) {
 	g = this.add.sprite(x, y, "cicken");
 	g.animations.add("walk", mframe("ck", 10), 12, true);
@@ -160,11 +199,14 @@ Level2.prototype.update = function() {
 
 	this.game.physics.arcade.collide(this.player, this.maplayer);
 		this.game.physics.arcade.collide(this.goal, this.maplayer);
+		this.game.physics.arcade.collide(this.coin, this.maplayer);
 		this.game.physics.arcade.collide(this.wizard, this.maplayer);
 		this.game.physics.arcade.collide(this.witch, this.maplayer);
 		this.game.physics.arcade.collide(this.enemies, this.maplayer);
 		this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
 			null, this);
+		this.game.physics.arcade.collide(this.player, this.coin, this.hitCoin,
+				null, this);
 		this.game.physics.arcade.collide(this.player, this.wizard, this.hitEnemy,
 				null, this);
 		this.game.physics.arcade.collide(this.player, this.witch, this.hitEnemy,
