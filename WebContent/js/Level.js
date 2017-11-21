@@ -118,7 +118,7 @@ function mframe(key, n) {
 }
 
 Level.prototype.hitEnemy = function(p, x) {
-	this.game.state.start("Level1");
+	this.game.state.start("Level");
 }
 Level.prototype.hitGoal = function(p, x) {
 	this.game.state.start("Level2");
