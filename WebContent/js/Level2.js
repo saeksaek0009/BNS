@@ -10,6 +10,8 @@ var proto = Object.create(Phaser.State);
 Level2.prototype = proto;
 
 Level2.prototype.create = function() {
+
+	
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 	this.game.physics.arcade.gravity.y = 1000;
 
@@ -33,16 +35,21 @@ Level2.prototype.create = function() {
 	this.map = this.game.add.tilemap("lab72");
 	this.map.addTilesetImage('tile_set2');
 	this.maplayer = this.map.createLayer("Tile Layer 1");
+	this.scoretext=this.add.text(this.game.camera.width/1.1,0,'Coin :'+this.game.score,{font:'50px arial;',fill:'red'});
+	this.scoretext.fixedToCamera = true;
+	this.scoretext1=this.add.text(this.game.camera.hight/1.1,0,'Score :'+this.game.score,{font:'50px arial;',fill:'blue'});
+	this.scoretext1.fixedToCamera = true;
 
 
 	this.maplayer.resizeWorld();
-	this.map.setCollisionBetween(0, 19, true, this.maplayer);
+	this.map.setCollisionBetween(0, 76, true, this.maplayer);
 	// แสดง sprite
 	this.enemies = this.add.group();
 	this.goal = this.add.group();
 	this.wizard = this.add.group();
 	this.witch = this.add.group();
 	this.coin = this.add.group();
+	this.water = this.add.group();
 	for (x in this.map.objects.object) {
 		var obj = this.map.objects.object[x];
 		if (obj.type == "player") {
@@ -66,8 +73,43 @@ Level2.prototype.create = function() {
 		} else if (obj.type == "coin") {
 			var c = this.addCoin(obj.x, obj.y);
 			this.coin.add(c);
+			}else if (obj.type == "water") {
+				var wa = this.addWater(obj.x, obj.y);
+				this.water.add(wa);
 			}
 	}
+	this.hpW = [];
+	this.wizard.hpW = 20;
+	
+	for(var i=0;i<this.wizard.hpW;i++){
+		this.hpW[i] = this.add.sprite(this.world.width-20-(3+32)*i,20,"boniatillo");
+		this.hpW[i].fixedToCamera = true;
+		this.hpW[i].anchor.set(0.5);
+		this.hpW[i].animations.add("all").play(12,true);
+	}
+	
+	this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
+	this.createWeapon();
+	this.input.keyboard.addKeyCapture([Phaser.Keyboard.LEFT,Phaser.Keyboard.RIGHT,Phaser.Keyboard.SPACEBAR, 
+	                                   Phaser.Keyboard.DOWN]);
+	this.player.inputEnable = true;
+	this.player.events.onInputDown.add(this.fireWeapon, this);
+	
+	
+
+};
+
+Level2.prototype.createWeapon = function() {
+	this.weapon = this.add.weapon(1, "moonlight");
+	this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+	this.weapon.trackSprite(this.play,50, -100);
+	this.weapon.bulletSpeed= 2000;
+	this.weapon.fireAngle = -7;
+	this.weapon.rate = 0;
+};
+
+Level2.prototype.fireWeapon = function() {
+	this.weapon.fire();
 };
 
 Level2.prototype.addPlayer = function(x, y) {
@@ -107,11 +149,21 @@ function mframe(key, n) {
 Level2.prototype.hitEnemy = function(p, x) {
 	this.game.state.start("Level2");
 }
+Level2.prototype.hitWater = function(p, x) {
+	this.game.state.start("Level2");
+}
 Level2.prototype.hitGoal = function(p, x) {
 	this.game.state.start("Level3");
 }
 Level2.prototype.hitCoin = function(p, x) {
-	
+	 x.kill();
+	 
+	 coinS = this.add.audio("nenadsimic",0.5,false);
+		coinS.play();
+	 
+	 this.game.score++;
+	 this.scoretext.text = 'coin :'+this.game.score;
+	 return true;
 	
 	// stop all monkey's movements
 	//this.tweens.remove();
@@ -170,6 +222,16 @@ Level2.prototype.addWizard = function(x, y) {
 	w.body.setSize(20, 130, 100, 0);
 	return w;
 };
+Level2.prototype.addWater = function(x, y) {
+	wa = this.add.sprite(x, y, "water");
+	wa.animations.add("water", gframes("water", 12), 12, true);
+	wa.play("water");
+	wa.anchor.set(0.3,-40);
+	wa.scale.set(2);
+	this.game.physics.enable(wa);
+	wa.body.collideWorldBounds = true;
+	return wa;
+};
 
 Level2.prototype.addCoin = function(x, y) {
 	c = this.add.sprite(x, y, "coin");
@@ -192,44 +254,96 @@ Level2.prototype.addGoal = function(x, y) {
 	g.body.collideWorldBounds = true;
 	return g;
 };
+Level2.prototype.BossonCollidebullet = function(wizard,bullet){
+	bullet.kill();
+	this.wizard.hpW--;
+	wizard.alpha = 0.1;
+	var wi = this.add.tween(wizard);
+	wi.to({alpha:1},200, "Linear",true,0,5);
+	wi.onComplete.addOnce(function(){this.alpha=1;this},wizard);
+	
+	var wi2 = this.add.tween(wizard);
+	wi2.to({
+		x : 0 , y : 100
+	}, 15000, "Quad.easeInOut", true, 0, Number.MAX_VALUE, true);
+	
+		
+if(this.wizard.hpW<=0){
+	wizard.kill();
+	exp = this.add.sprite(wizard.x, wizard.y,"boom");
+	exp.anchor.set(0.0,0.85);
+	exp.scale.set(3);
+	exp.animations.add("all",null,15,false).play().killOnComplete=true;
+	blaster = this.add.audio("Explosion",0.5,false);
+	blaster.play();
+	}
+
+/*Boss.kill();
+bullet.kill();
+this.game.score++;
+this.scoreText.text = ''+this.game.score;
+exp = this.add.sprite(Boss.x, Boss.y, "boom");
+ exp.anchor.set(0.5);
+ exp.animations.add("all",null,12,false).play().killOnComplete=true;
+ this.boom.play();*/
+};
 
 
 
 Level2.prototype.update = function() {
-
+	this.game.physics.enable(this.player,Phaser.Physics.ARCADE);
+	this.game.physics.arcade.collide(this.player,Phaser.Physics.ARCADE);
 	this.game.physics.arcade.collide(this.player, this.maplayer);
-		this.game.physics.arcade.collide(this.goal, this.maplayer);
-		this.game.physics.arcade.collide(this.coin, this.maplayer);
-		this.game.physics.arcade.collide(this.wizard, this.maplayer);
-		this.game.physics.arcade.collide(this.witch, this.maplayer);
-		this.game.physics.arcade.collide(this.enemies, this.maplayer);
-		this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
-			null, this);
-		this.game.physics.arcade.collide(this.player, this.coin, this.hitCoin,
-				null, this);
-		this.game.physics.arcade.collide(this.player, this.wizard, this.hitEnemy,
-				null, this);
-		this.game.physics.arcade.collide(this.player, this.witch, this.hitEnemy,
-				null, this);
+	this.game.physics.arcade.collide(this.goal, this.maplayer);
+	this.game.physics.arcade.collide(this.coin, this.maplayer);
+	this.game.physics.arcade.collide(this.wizard, this.maplayer);
+	this.game.physics.arcade.collide(this.witch, this.maplayer);
+	this.game.physics.arcade.collide(this.enemies, this.maplayer);
+	this.physics.arcade.collide(this.wizard,this.weapon.bullets,this.BossonCollidebullet,null,this);
 	this.game.physics.arcade.collide(this.player, this.enemies, this.hitEnemy,
 			null, this);
+	this.game.physics.arcade.collide(this.player, this.weapon.bullets, this.hitEnemy,
+			null, this);
+	this.game.physics.arcade.collide(this.weapon.bullets, this.enemies, this.onCollide,
+			null, this);
+	this.game.physics.arcade.collide(this.weapon.bullets, this.wizard, this.onCollide,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
+		null, this);
+	this.game.physics.arcade.collide(this.player, this.coin, this.hitCoin,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.water, this.hitWater,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.wizard, this.hitEnemy,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.witch, this.hitEnemy,
+			null, this);
+	
+	if(this.wizard.hp<=0){
+		wizard.kill();
+	}
 	
 	if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-		this.player.body.velocity.x = -200;
+		this.player.body.velocity.x = -250;
 		this.player.scale.x = 1;
 		this.player.play("walk");
+		this.weapon.trackSprite(this.player, 200, -20);
+		this.weapon.fireAngle = 180;
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
 		this.player.body.velocity.x = 250;
 		this.player.scale.x = -1;
 		this.player.play("walk");
+		this.weapon.trackSprite(this.player, -200, -20);
+		this.weapon.fireAngle = -7;
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+		this.fireWeapon();
 		this.player.play("fight");
 	}
 
 	if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
 		this.player.play("jump");
 		if (this.player.body.velocity.y == 0)
-			this.player.body.velocity.y = -750;
+			this.player.body.velocity.y = -800;
 
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
 		// this.player.body.acceleration.y = 120;
@@ -241,6 +355,22 @@ Level2.prototype.update = function() {
 	}
 	
 }
+
+
+Level2.prototype.onCollide = function(p, x) {
+	x.kill();
+	p.kill();
+	exp = this.add.sprite(x.x, x.y,"bomp");
+	exp.anchor.set(0.0,0.85);
+	exp.scale.set(2);
+	exp.animations.add("all",null,40,false).play().killOnComplete=true;
+	this.game.score++;
+	this.scoretext1.text = 'Score :'+this.game.score;
+	
+	blaster = this.add.audio("Explosion",0.5,false);
+	blaster.play();
+	return true;
+};
 
 Level2.prototype.quitGame = function() {
 	this.game.state.start("Menu");
