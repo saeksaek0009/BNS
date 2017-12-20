@@ -10,9 +10,11 @@ window.onload = function() {
 	game.state.add("Preload", Preload);
 	game.state.add("Level",Level);
 	game.state.add("Story", Story);
+	game.state.add("Story2", Story2);
 	game.state.add("Level2",Level2);
 	game.state.add("Level3",Level3);
 	game.state.add("Menu2", Menu2);
+	game.state.add("Credit1", Credit1);
 
 
 	// Now start the Boot state.

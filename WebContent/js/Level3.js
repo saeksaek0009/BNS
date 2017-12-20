@@ -33,10 +33,13 @@ Level3.prototype.create = function() {
 	this.map = this.game.add.tilemap("lab73");
 	this.map.addTilesetImage('tile_set3');
 	this.maplayer = this.map.createLayer("Tile Layer 1");
-
+	this.scoretext=this.add.text(this.game.camera.width/1.1,0,'Coin :'+this.game.score,{font:'50px arial;',fill:'red'});
+	this.scoretext.fixedToCamera = true;
+	this.scoretext1=this.add.text(this.game.camera.hight/1.1,0,'Score :'+this.game.score,{font:'50px arial;',fill:'blue'});
+	this.scoretext1.fixedToCamera = true;
 
 	this.maplayer.resizeWorld();
-	this.map.setCollisionBetween(0, 19, true, this.maplayer);
+	this.map.setCollisionBetween(0, 76, true, this.maplayer);
 	// แสดง sprite
 	this.enemies = this.add.group();
 	this.goal = this.add.group();
@@ -68,6 +71,22 @@ Level3.prototype.create = function() {
 			this.coin.add(c);
 			}
 	}
+	this.hpW = [];
+	this.witch.hpW = 40;
+	
+	for(var i=0;i<this.witch.hpW;i++){
+		this.hpW[i] = this.add.sprite(this.world.width-20-(3+32)*i,20,"boniatillo");
+		this.hpW[i].fixedToCamera = true;
+		this.hpW[i].anchor.set(0.5);
+		this.hpW[i].animations.add("all").play(12,true);
+	}
+	
+	this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
+	this.createWeapon();
+	this.input.keyboard.addKeyCapture([Phaser.Keyboard.LEFT,Phaser.Keyboard.RIGHT,Phaser.Keyboard.SPACEBAR, 
+	                                   Phaser.Keyboard.DOWN]);
+	this.player.inputEnable = true;
+	this.player.events.onInputDown.add(this.fireWeapon, this);
 };
 
 Level3.prototype.addPlayer = function(x, y) {
@@ -105,13 +124,20 @@ function mframe(key, n) {
 }
 
 Level3.prototype.hitEnemy = function(p, x) {
-	this.game.state.start("Menu2");
+	this.game.state.start("Level3");
 }
 Level3.prototype.hitGoal = function(p, x) {
-	this.game.state.start("Menu");
+	this.game.state.start("Story2");
 }
 Level3.prototype.hitCoin = function(p, x) {
+	x.kill();
 	
+	coinS = this.add.audio("nenadsimic",0.5,false);
+	coinS.play();
+	
+	 this.game.score++;
+	 this.scoretext.text = 'coin :'+this.game.score;
+	 return true;
 	
 	// stop all monkey's movements
 	//this.tweens.remove();
@@ -134,6 +160,7 @@ Level3.prototype.hitCoin = function(p, x) {
 
 
 }
+
 Level3.prototype.addDevil = function(x, y) {
 	d = this.add.sprite(x, y, "devil");
 	d.animations.add("idle", gframes("Idle", 10), 12, true);
@@ -193,36 +220,97 @@ Level3.prototype.addCoin = function(x, y) {
 	return c;
 };
 
+Level3.prototype.createWeapon = function() {
+	this.weapon = this.add.weapon(1, "moonlight");
+	this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+	this.weapon.trackSprite(this.play,50, -100);
+	this.weapon.bulletSpeed= 2000;
+	this.weapon.fireAngle = -7;
+	this.weapon.rate = 0;
+};
+
+Level3.prototype.fireWeapon = function() {
+	this.weapon.fire();
+};
+
+Level3.prototype.BossonCollidebullet = function(witch,bullet){
+	bullet.kill();
+	this.witch.hpW--;
+	witch.alpha = 0.1;
+	var wi = this.add.tween(witch);
+	wi.to({alpha:1},200, "Linear",true,0,5);
+	wi.onComplete.addOnce(function(){this.alpha=1;this},witch);
+	
+	var wi2 = this.add.tween(witch);
+	wi2.to({
+		x : 0
+	}, 5000, "Quad.easeInOut", true, 0, Number.MAX_VALUE, true);
+	
+
+if(this.witch.hpW<=0){
+	witch.kill();
+	exp = this.add.sprite(witch.x, witch.y,"boom");
+	exp.anchor.set(0.0,0.3);
+	exp.scale.set(3);
+	exp.animations.add("all",null,15,false).play().killOnComplete=true;
+	
+	blaster = this.add.audio("Explosion",0.5,false);
+	blaster.play();
+	}
+/*Boss.kill();
+bullet.kill();
+this.game.score++;
+this.scoreText.text = ''+this.game.score;
+exp = this.add.sprite(Boss.x, Boss.y, "boom");
+ exp.anchor.set(0.5);
+ exp.animations.add("all",null,12,false).play().killOnComplete=true;
+ this.boom.play();*/
+};
+
 
 
 Level3.prototype.update = function() {
 
+	this.game.physics.enable(this.player,Phaser.Physics.ARCADE);
+	this.game.physics.arcade.collide(this.player,Phaser.Physics.ARCADE);
 	this.game.physics.arcade.collide(this.player, this.maplayer);
-		this.game.physics.arcade.collide(this.goal, this.maplayer);
-		this.game.physics.arcade.collide(this.coin, this.maplayer);
-		this.game.physics.arcade.collide(this.wizard, this.maplayer);
-		this.game.physics.arcade.collide(this.witch, this.maplayer);
-		this.game.physics.arcade.collide(this.enemies, this.maplayer);
-		this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
-			null, this);
-		this.game.physics.arcade.collide(this.player, this.coin, this.hitCoin,
-				null, this);
-		this.game.physics.arcade.collide(this.player, this.wizard, this.hitEnemy,
-				null, this);
-		this.game.physics.arcade.collide(this.player, this.witch, this.hitEnemy,
-				null, this);
+	this.game.physics.arcade.collide(this.goal, this.maplayer);
+	this.game.physics.arcade.collide(this.coin, this.maplayer);
+	this.game.physics.arcade.collide(this.wizard, this.maplayer);
+	this.game.physics.arcade.collide(this.witch, this.maplayer);
+	this.game.physics.arcade.collide(this.enemies, this.maplayer);
+	this.physics.arcade.collide(this.witch,this.weapon.bullets,this.BossonCollidebullet,null,this);
 	this.game.physics.arcade.collide(this.player, this.enemies, this.hitEnemy,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.weapon.bullets, this.hitEnemy,
+			null, this);
+	this.game.physics.arcade.collide(this.weapon.bullets, this.enemies, this.onCollide,
+			null, this);
+	this.game.physics.arcade.collide(this.weapon.bullets, this.witch, this.onCollide,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.goal, this.hitGoal,
+		null, this);
+	this.game.physics.arcade.collide(this.player, this.coin, this.hitCoin,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.wizard, this.hitEnemy,
+			null, this);
+	this.game.physics.arcade.collide(this.player, this.witch, this.hitEnemy,
 			null, this);
 	
 	if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
 		this.player.body.velocity.x = -200;
 		this.player.scale.x = 1;
 		this.player.play("walk");
+		this.weapon.trackSprite(this.player, 200, -20);
+		this.weapon.fireAngle = 180;
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
 		this.player.body.velocity.x = 250;
 		this.player.scale.x = -1;
 		this.player.play("walk");
+		this.weapon.trackSprite(this.player, -200, -20);
+		this.weapon.fireAngle = -7;
 	} else if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+		this.fireWeapon();
 		this.player.play("fight");
 	}
 
@@ -241,6 +329,22 @@ Level3.prototype.update = function() {
 	}
 	
 }
+
+Level3.prototype.onCollide = function(p, x) {
+	x.kill();
+	p.kill();
+	exp = this.add.sprite(x.x, x.y,"bomp");
+	exp.anchor.set(0.0,0.85);
+	exp.scale.set(2);
+	exp.animations.add("all",null,40,false).play().killOnComplete=true;
+	this.game.score++;
+	this.scoretext1.text = 'Score :'+this.game.score;
+	
+	blaster = this.add.audio("Explosion",0.5,false);
+	blaster.play();
+	
+	return true;
+};
 
 Level3.prototype.quitGame = function() {
 	this.game.state.start("Menu");

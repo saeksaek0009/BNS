@@ -17,7 +17,8 @@ Menu.prototype.create = function() {
 	this.bg = this.add.sprite(0, 0, "AS");
 	this.bg.width = this.game.width;
 	this.bg.height = this.game.height;
-	
+	this.ss1 = this.game.add.audio('DefenseLine',1,true);
+	this.ss1.play();
 	{
 	}
 	var sprite = this.add.sprite(this.world.centerX, this.world.centerY,
@@ -40,16 +41,17 @@ Menu.prototype.create = function() {
 	credit.anchor.set(-0.05, -0.38);
 	credit.scale.set(0.7);
 	credit.inputEnabled = true;
-	
+	credit.events.onInputDown.add(this.startCredit, this);
+
 	this.input.onDown.add(this.startGame, this);
 	
-	text = this.add.text(30, this.world.height - 40, "PUBG", {
-		fill : 'white'
-	});
 };
 
 Menu.prototype.startStory = function() {
 	this.game.state.start("Story");
+};
+Menu.prototype.startCredit = function() {
+	this.game.state.start("Credit1");
 };
 Menu.prototype.startGame = function() {
 	this.game.state.start("Level");
