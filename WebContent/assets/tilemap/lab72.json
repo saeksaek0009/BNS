@@ -35,8 +35,8 @@
                  "type":"player",
                  "visible":true,
                  "width":64,
-                 "x":134.666666666667,
-                 "y":1086.54545454545
+                 "x":134.667,
+                 "y":1086.55
                 }, 
                 {
                  "gid":23,
@@ -47,8 +47,8 @@
                  "type":"enemy1",
                  "visible":true,
                  "width":64,
-                 "x":1143.75757575758,
-                 "y":1010.78787878788
+                 "x":1143.76,
+                 "y":1010.79
                 }, 
                 {
                  "gid":23,
@@ -59,8 +59,8 @@
                  "type":"enemy1",
                  "visible":true,
                  "width":64,
-                 "x":1728.60606060606,
-                 "y":495.636363636364
+                 "x":1728.61,
+                 "y":495.636
                 }, 
                 {
                  "gid":23,
@@ -71,8 +71,8 @@
                  "type":"enemy1",
                  "visible":true,
                  "width":64,
-                 "x":3383.15151515152,
-                 "y":825.939393939394
+                 "x":3383.15,
+                 "y":825.939
                 }, 
                 {
                  "gid":23,
@@ -83,8 +83,8 @@
                  "type":"enemy1",
                  "visible":true,
                  "width":64,
-                 "x":4858.90909090909,
-                 "y":701.69696969697
+                 "x":4858.91,
+                 "y":701.697
                 }, 
                 {
                  "gid":23,
@@ -95,8 +95,8 @@
                  "type":"enemy1",
                  "visible":true,
                  "width":64,
-                 "x":6195.27272727273,
-                 "y":701.69696969697
+                 "x":6195.27,
+                 "y":701.697
                 }, 
                 {
                  "gid":23,
@@ -107,8 +107,8 @@
                  "type":"enemy1",
                  "visible":true,
                  "width":64,
-                 "x":5313.45454545455,
-                 "y":1086.54545454545
+                 "x":5313.45,
+                 "y":1086.55
                 }, 
                 {
                  "gid":24,
@@ -119,8 +119,8 @@
                  "type":"enemy2",
                  "visible":true,
                  "width":64,
-                 "x":9077.09090909091,
-                 "y":889.575757575758
+                 "x":9077.09,
+                 "y":889.576
                 }, 
                 {
                  "gid":21,
@@ -131,8 +131,8 @@
                  "type":"coin",
                  "visible":true,
                  "width":64,
-                 "x":1407.39393939394,
-                 "y":504.727272727273
+                 "x":1407.39,
+                 "y":504.727
                 }, 
                 {
                  "gid":21,
@@ -371,8 +371,8 @@
                  "type":"boot2",
                  "visible":true,
                  "width":64,
-                 "x":2695.27272727273,
-                 "y":641.090909090909
+                 "x":2695.27,
+                 "y":641.091
                 }, 
                 {
                  "gid":25,
@@ -383,8 +383,8 @@
                  "type":"boot2",
                  "visible":true,
                  "width":64,
-                 "x":5504.36363636364,
-                 "y":765.333333333333
+                 "x":5504.36,
+                 "y":765.333
                 }, 
                 {
                  "gid":25,
@@ -395,8 +395,8 @@
                  "type":"boot2",
                  "visible":true,
                  "width":64,
-                 "x":7171.0303030303,
-                 "y":1022.90909090909
+                 "x":7171.03,
+                 "y":1022.91
                 }, 
                 {
                  "gid":28,
@@ -407,8 +407,8 @@
                  "type":"boot3",
                  "visible":true,
                  "width":64,
-                 "x":9143.75757575758,
-                 "y":574.424242424242
+                 "x":9143.76,
+                 "y":574.424
                 }, 
                 {
                  "gid":31,
@@ -419,8 +419,8 @@
                  "type":"boot1",
                  "visible":true,
                  "width":64,
-                 "x":8377.09090909091,
-                 "y":574.424242424242
+                 "x":8377.09,
+                 "y":574.424
                 }, 
                 {
                  "gid":31,
@@ -431,8 +431,8 @@
                  "type":"boot1",
                  "visible":true,
                  "width":64,
-                 "x":643.757575757576,
-                 "y":898.666666666667
+                 "x":643.758,
+                 "y":898.667
                 }, 
                 {
                  "gid":31,
@@ -443,8 +443,8 @@
                  "type":"boot1",
                  "visible":true,
                  "width":64,
-                 "x":5564.9696969697,
-                 "y":768.363636363636
+                 "x":5564.97,
+                 "y":768.364
                 }, 
                 {
                  "gid":29,
@@ -455,8 +455,8 @@
                  "type":"poison",
                  "visible":true,
                  "width":64,
-                 "x":2998.30303030303,
-                 "y":959.272727272727
+                 "x":2998.3,
+                 "y":959.273
                 }, 
                 {
                  "gid":32,
@@ -467,8 +467,236 @@
                  "type":"goal",
                  "visible":true,
                  "width":64,
-                 "x":9534.66666666667,
-                 "y":762.30303030303
+                 "x":9534.67,
+                 "y":762.303
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":58,
+                 "name":"water1",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":1464.9696969697,
+                 "y":1280.48484848485
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":59,
+                 "name":"water2",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":1595.27272727273,
+                 "y":1280.48484848485
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":60,
+                 "name":"water3",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":1752.84848484848,
+                 "y":1277.45454545455
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":61,
+                 "name":"water4",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":1871.0303030303,
+                 "y":1277.45454545455
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":62,
+                 "name":"water5",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":2019.51515151515,
+                 "y":1280.48484848485
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":63,
+                 "name":"water6",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":2158.90909090909,
+                 "y":1277.45454545455
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":64,
+                 "name":"water7",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":2301.33333333333,
+                 "y":1277.45454545455
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":65,
+                 "name":"water8",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":2422.54545454545,
+                 "y":1277.45454545455
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":66,
+                 "name":"water9",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":4477.09090909091,
+                 "y":1277.45454545455
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":67,
+                 "name":"water10",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":6395.27272727273,
+                 "y":1277.45454545455
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":68,
+                 "name":"water11",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":6564.9696969697,
+                 "y":1271.39393939394
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":69,
+                 "name":"water12",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":6734.66666666667,
+                 "y":1274.42424242424
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":70,
+                 "name":"water13",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":6910.42424242424,
+                 "y":1280.48484848485
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":71,
+                 "name":"water14",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":7068,
+                 "y":1277.45454545455
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":72,
+                 "name":"water15",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":7234.66666666667,
+                 "y":1274.42424242424
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":73,
+                 "name":"water16",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":7371.0303030303,
+                 "y":1280.48484848485
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":74,
+                 "name":"water17",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":7498.30303030303,
+                 "y":1280.48484848485
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":75,
+                 "name":"water18",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":7640.72727272727,
+                 "y":1283.51515151515
+                }, 
+                {
+                 "gid":23,
+                 "height":64,
+                 "id":76,
+                 "name":"water19",
+                 "rotation":0,
+                 "type":"water",
+                 "visible":true,
+                 "width":64,
+                 "x":7795.27272727273,
+                 "y":1283.51515151515
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -476,7 +704,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":58,
+ "nextobjectid":77,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
